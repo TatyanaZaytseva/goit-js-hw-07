@@ -1,7 +1,6 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
-
 const galleryContainer = document.querySelector(".gallery");
 const galleryInsert = createGalleryMarkup(galleryItems);
 galleryContainer.insertAdjacentHTML("afterbegin", galleryInsert); 

@@ -17,8 +17,7 @@ function createGalleryMarkup(galleryItems) {
                 alt="${description}"/>
             </a>
         </div>`
-            
-    }).join('')
+     }).join('')
     return markup
 }
 
@@ -31,7 +30,6 @@ function onCardHandleClick(event) {
     }
     const urlOriginalPhoto = event.target.dataset.source
     
-
     const instance = basicLightbox.create(`<img src="${urlOriginalPhoto}">`)
 
     instance.show()
@@ -40,8 +38,7 @@ function onCardHandleClick(event) {
     galleryContainer.addEventListener('keydown', onEscapeClick)
     function onEscapeClick(event) {
         event.preventDefault()
-        console.log("key:", event.key)
-        console.log("code:", event.code)
+        
         if (!visib) {
             return
         }
