@@ -22,31 +22,31 @@ function createGalleryMarkup(galleryItems) {
 }
 
 galleryContainer.addEventListener('click', onCardHandleClick)
+const instance = basicLightbox.create(`<img src="" alt="full-image"/>`)
+
 function onCardHandleClick(event) {
     event.preventDefault()
      
-    if (!event.target.classList.contains('gallery__image')) {
+    if (event.target.nodeName !== "IMG") {
         return
     }
-    const urlOriginalPhoto = event.target.dataset.source
+    let urlOriginalPhoto = event.target.dataset.source
     
-    const instance = basicLightbox.create(`<img src="${urlOriginalPhoto}">`)
-
+    const modalImage = instance.element().querySelector('img')
+    modalImage.src = urlOriginalPhoto
     instance.show()
     const visib = basicLightbox.visible()
         
-    galleryContainer.addEventListener('keydown', onEscapeClick)
-    function onEscapeClick(event) {
-        event.preventDefault()
-        
-        if (!visib) {
-            return
-        }
-        if (event.key === 'Escape') {
-            instance.close()
-        }
-    }
+    window.addEventListener('keydown', onEscapeClick)
 }
-
+function onCloseModal() {
+    instance.close()
+    window.removeEventListener('keydown', onEscapeClick)
+}
+function onEscapeClick(event) {
+        if (event.key === 'Escape') {
+            onCloseModal()
+        }
+}
 
 
